@@ -1,5 +1,6 @@
 package com.example.Editique.controller;
 
+import com.example.Editique.service.GenerateRelve;
 import com.example.Editique.service.ReportService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import net.sf.jasperreports.engine.JRException;
@@ -15,10 +16,18 @@ import java.io.FileNotFoundException;
 public class ReportController {
 
     @Autowired
+    GenerateRelve generateRelve;
+
+    @Autowired
     ReportService reportService;
 
     @GetMapping("/report/{format}")
     public String generateReport(@PathVariable String format, @RequestBody String inputData) throws JRException, FileNotFoundException, JsonProcessingException {
         return reportService.exportReport(format, inputData);
+    }
+
+    @GetMapping("/generate/{format}")
+    public String generate(@PathVariable String format, @RequestBody String inputData) throws JRException, FileNotFoundException, JsonProcessingException {
+        return generateRelve.export(format,inputData);
     }
 }
