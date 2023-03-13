@@ -1,4 +1,5 @@
 package com.example.Editique.service;
+import com.example.Editique.entity.TemplateParam;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,6 +43,33 @@ public class ReportService {
 
         return "report generated in path : " + path;
     }
+
+
+  public byte[] generateFromParams(TemplateParam params) throws Exception {
+      String jsonData = params.getFlow();
+      String selector = params.getSelector();
+      System.out.println(selector);
+      System.out.println(jsonData);
+      String reportName = params.getSelectorType();
+      File file = ResourceUtils.getFile("classpath:Releve.jrxml");
+      JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+      ObjectMapper mapper = new ObjectMapper();
+      List<Map<String, Object>> data = mapper.readValue(jsonData, new TypeReference<>() {});
+      System.out.println(data);
+      JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(data));
+      // Set report parameters
+      Map<String, Object> parameters = new HashMap<>();
+      JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, dataSource);
+      return JasperExportManager.exportReportToPdf(jasperPrint);
+
+
+  }
+
+
+
+
+
+
 
 
 }

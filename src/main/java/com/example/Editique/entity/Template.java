@@ -1,11 +1,12 @@
 package com.example.Editique.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Data
 public class Template{
 
 
@@ -15,5 +16,8 @@ public class Template{
     private String code;
     private String description;
     private String source;
+
+    @OneToMany
+    private List<TemplateParam> templateParam;
 
 }
