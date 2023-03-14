@@ -13,6 +13,8 @@ public class Template{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String name;
     private String code;
     private String description;
     private String source;

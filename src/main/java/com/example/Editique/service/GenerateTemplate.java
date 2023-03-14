@@ -25,13 +25,7 @@ public class GenerateTemplate {
         JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(Collections.singleton(data));
         // Set report parameters
         Map<String, Object> parameters = new HashMap<>();
-        /*for (TemplateParam param : params) {
-            parameters.put("param"+params.length,param.getName());
-        }
 
-
-        System.out.println("Input data: " + params);
-        System.out.println("Parameters: " + parameters);*/
         for (int i = 0; i < params.length; i++) {
             String paramName = "param" + (i + 1);
             String paramValue = params[i].getName();
