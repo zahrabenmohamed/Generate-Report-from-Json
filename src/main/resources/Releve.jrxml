@@ -8,10 +8,7 @@
     <parameter name="Param1" class="java.lang.String"/>
     <parameter name="param2" class="java.lang.String"/>
     <parameter name="Param3" class="java.lang.String"/>
-    <parameter name="Param4" class="java.lang.String"/>
-    <parameter name="Param5" class="java.lang.String"/>
-    <parameter name="Param6" class="java.lang.String"/>
-    <parameter name="Param7" class="java.lang.String"/>
+
 
 
 
@@ -34,19 +31,9 @@
                     <reportElement x="30" y="60" width="100" height="30" uuid="ed8b604b-8996-48e3-8545-81056c2fe493"/>
                     <text><![CDATA[Date ]]></text>
                 </staticText>
-                <textField>
-                    <reportElement x="100" y="0" width="100" height="30" uuid="b69f0080-c392-446e-bc36-7fe4a2a530b4"/>
-                    <textFieldExpression><![CDATA[$P{Param5}]]></textFieldExpression>
-                </textField>
-                <textField>
-                    <reportElement x="79" y="30" width="100" height="30" uuid="4c38f7ff-f3c9-4702-808e-778aaa5aa5f2"/>
-                    <textFieldExpression><![CDATA[$P{Param6}]]></textFieldExpression>
-                </textField>
+
             </frame>
-            <textField>
-                <reportElement x="47" y="43" width="100" height="30" uuid="18f7854f-ee23-4d8d-9465-779520e5d4bf"/>
-                <textFieldExpression><![CDATA[$P{Param7}]]></textFieldExpression>
-            </textField>
+
         </band>
     </title>
     <pageHeader>
@@ -112,10 +99,7 @@
                 <reportElement x="240" y="10" width="100" height="30" uuid="3ff51a10-c3e3-4b30-97e6-bd8e194249c0"/>
                 <textFieldExpression><![CDATA[$P{Param3}]]></textFieldExpression>
             </textField>
-            <textField>
-                <reportElement x="330" y="10" width="100" height="30" uuid="ae6086cc-1a7e-44b1-bba1-cb85d721a9c8"/>
-                <textFieldExpression><![CDATA[$P{Param4}]]></textFieldExpression>
-            </textField>
+
         </band>
     </detail>
     <columnFooter>
