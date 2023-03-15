@@ -1,4 +1,5 @@
 package com.example.Editique.dto;
+import com.example.Editique.constant.SelectorType;
 import lombok.Data;
 
 
@@ -10,6 +11,7 @@ public class TemplateParamDto {
     private String description;
     private String type;
     private String selector;
-    private String selectorType;
-    private String flow;
+
+    private SelectorType selectorType;
+    private String source;
 }

@@ -1,5 +1,6 @@
 package com.example.Editique.entity;
 
+import com.example.Editique.constant.SelectorType;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ public class TemplateParam {
     private String description;
     private String type;
     private String selector;
-    private String selectorType;
-    private String flow;
+
+    private SelectorType selectorType;
+    private String source;
 }

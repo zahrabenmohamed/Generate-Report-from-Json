@@ -13,10 +13,9 @@ public class Template{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String code;
+    private String code; // name of template
     private String description;
-    private String source;
+    private String path; // path of jrxml file
 
     @OneToMany
     private List<TemplateParam> templateParam;
