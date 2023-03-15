@@ -10,6 +10,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 import org.apache.camel.util.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +50,18 @@ public class TemplateService {
         Object jsonObject = mapper.convertValue(templateDto.getTemplateParam(), Object.class);
         String jsonString = mapper.writeValueAsString(jsonObject);
         System.out.println(jsonString);
+        String path=templateDto.getPath();
+        JasperReport jasperReport = JasperCompileManager.compileReport(path);
+        JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(Collections.singleton(jsonString));
+        // Add parameters
+        Map<String, Object> parameters = new HashMap<>();
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
+                jrBeanCollectionDataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, templateDto.getCode()+".pdf");
+
+
+
+
         return new byte[0];
     }
 
