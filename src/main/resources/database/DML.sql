@@ -1,5 +1,6 @@
-INSERT INTO Template (code, description, path)
-VALUES ('template_code', 'template_description', 'template_path');
+INSERT INTO template (id,code, description, path)
+VALUES (1,'facture', 'this is an invoice', 'facture.jrxml'),
+       (2,'RIB','This is a RIB ','RIB.jrxml');
 
 --insertion in table of  template-param
 INSERT INTO template_param (id, name, description, type, selector_type, selector, source)
