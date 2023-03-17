@@ -13,5 +13,5 @@ public class TemplateParamDto {
     private String selector;
 
     private SelectorType selectorType;
-    private String source;
+    private String source; // name of the flux ex:customer , transactions
 }
