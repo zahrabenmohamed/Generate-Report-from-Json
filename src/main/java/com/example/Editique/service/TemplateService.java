@@ -32,17 +32,7 @@ public class TemplateService {
         this.templateParamRepository = templateParamRepository;
     }
 
-    public Optional<Template> findTemplateById(Long id){
-        return Optional.ofNullable(templateRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Template not found")));}
-
-
-    public Optional<Template> findTemplateByName(String name) {
-        return templateRepository.findByCode(name);
-    }
-
-    public byte[] generateTemplate(TemplateDto templateDto) throws FileNotFoundException, JRException, JsonProcessingException {
-        //TODO--you should check the the path if it's not null
+   /* public byte[] generateTemplate(TemplateDto templateDto) throws FileNotFoundException, JRException, JsonProcessingException {
         System.out.println(templateDto);
         Map<String,String> data=new HashMap<>();
         ObjectMapper mapper = new ObjectMapper();
@@ -62,7 +52,7 @@ public class TemplateService {
 
 
         return new byte[0];
-    }
+    }*/
 
 
     public byte[] generateTemplate(GenerationRequest request) {
