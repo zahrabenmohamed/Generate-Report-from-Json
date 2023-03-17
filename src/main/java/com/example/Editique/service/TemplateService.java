@@ -1,6 +1,5 @@
 package com.example.Editique.service;
 
-import aj.org.objectweb.asm.TypeReference;
 import com.example.Editique.dto.GenerationRequest;
 import com.example.Editique.dto.TemplateDto;
 import com.example.Editique.entity.Template;
@@ -14,14 +13,9 @@ import lombok.SneakyThrows;
 import net.minidev.json.JSONArray;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
-import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
-import org.apache.camel.util.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 
@@ -43,7 +37,7 @@ public class TemplateService {
                 .orElseThrow(() -> new RuntimeException("Template not found")));}
 
 
-    public List<Template> findTemplateByName(String name) {
+    public Optional<Template> findTemplateByName(String name) {
         return templateRepository.findByCode(name);
     }
 
@@ -115,4 +109,4 @@ public class TemplateService {
         return jsonResult;
     }
 }
-}
+
