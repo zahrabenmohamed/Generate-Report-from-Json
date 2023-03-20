@@ -9,13 +9,14 @@ import java.util.List;
 @Data
 public class Template{
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String code; // name of template
+
+    @Column(unique = true)
+    private String code;
     private String description;
-    private String path; // path of jrxml file
+    private String path;
 
     @OneToMany
     private List<TemplateParam> templateParam;

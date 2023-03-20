@@ -9,7 +9,4 @@ import java.util.Optional;
 @Repository
 public interface TemplateRepository extends JpaRepository<Template,Long> {
     Optional<Template> findByCode(String code);
-
-
-
 }

@@ -19,5 +19,6 @@ public class TemplateParam {
 
     @Enumerated(EnumType.STRING)
     private SelectorType selectorType;
-    private String source;
+    private String source; //transaction s, customer ( name flux )
 }
+
