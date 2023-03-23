@@ -1,7 +1,6 @@
 package com.example.Editique.controller;
 
 import com.example.Editique.dto.GenerationRequest;
-import com.example.Editique.dto.TemplateDto;
 import com.example.Editique.entity.Template;
 import com.example.Editique.service.TemplateService;
 
@@ -10,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -24,18 +22,20 @@ public class TemplateController {
         return  templateService.getTemplate();
     }
 
+
+
     @GetMapping(value = "template/{id}")
     public ResponseEntity<?> getTemplateById(@PathVariable Long id){
         return ResponseEntity.ok(templateService.getTemplateById(id));
 
     }
 
-    @DeleteMapping(value = "/template/{id}")
+    @DeleteMapping(value = "/template-delete/{id}")
     public void deleteTemplateById(@PathVariable Long id){
         templateService.deleteTemplate(id);
     }
 
-    @PutMapping(value = "/template-delete/{id}")
+    @PutMapping(value = "/template-update/{id}")
     public ResponseEntity<Template> updateTemplate(@PathVariable("id") long id, @RequestBody Template template) {
         Template updatedTemplate = templateService.updateTemplate(id, template);
         return ResponseEntity.ok(updatedTemplate);
