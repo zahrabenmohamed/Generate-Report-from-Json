@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.0.final using JasperReports Library version 6.20.0-2bc7ab61c56f459e8176eb05c7705e145cd400ad  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="releve" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6ffed11e-e217-48c2-acf4-687e1e4f4807">
+	<parameter name="client_lname" class="java.lang.String"/>
+	<parameter name="client_fname" class="java.lang.String"/>
+	<parameter name="account" class="java.lang.String"/>
+	<parameter name="agency" class="java.lang.String"/>
+	<parameter name="transactions" class="java.lang.String"/>
+	<parameter name="openingDate" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="160" y="20" width="297" height="30" uuid="10e18cec-3dc0-43b4-af7f-a41f5fa7c4ee"/>
+				<text><![CDATA[      Bank Détails Informations]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="194" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="10" width="100" height="30" uuid="2f37c827-1bb8-4b2f-9663-ea6aec08cef9"/>
+				<text><![CDATA[First Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="40" width="100" height="30" uuid="27828293-03e3-41f1-8c2f-94689e6c66d2"/>
+				<text><![CDATA[Last Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="70" width="100" height="30" uuid="2ded70fb-d2e8-44d3-b1ee-9aad00465348"/>
+				<text><![CDATA[Account]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="100" width="100" height="30" uuid="f15e1947-33e1-416d-b538-cd71902c5a54"/>
+				<text><![CDATA[Agency]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="130" width="100" height="30" uuid="fab1a42c-275a-487e-89a3-bb8f711881f1"/>
+				<text><![CDATA[Transactions]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="160" width="100" height="30" uuid="fda9bed1-bef3-40de-b077-5259d2ae11c9"/>
+				<text><![CDATA[OpeningDate]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="180" y="40" width="100" height="30" uuid="fb37ff45-4f4b-480f-bc07-c43a0935275d"/>
+				<textFieldExpression><![CDATA[$P{client_lname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="10" width="100" height="30" uuid="e9c3c4da-0690-4ea3-8b9f-167e4dccc5af"/>
+				<textFieldExpression><![CDATA[$P{client_fname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="70" width="100" height="30" uuid="395b4bd4-04bc-424f-88ba-7ad2051180a4"/>
+				<textFieldExpression><![CDATA[$P{account}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="100" width="100" height="30" uuid="707d9392-5c3a-4020-94a8-093a369e3a0f"/>
+				<textFieldExpression><![CDATA[$P{agency}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="130" width="100" height="30" uuid="2f4fc3c7-9c87-4095-9d13-af6693ee8b4f"/>
+				<textFieldExpression><![CDATA[$P{transactions}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="160" width="100" height="30" uuid="7cf06b52-71fa-4050-9994-09c3c902cb20"/>
+				<textFieldExpression><![CDATA[$P{openingDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

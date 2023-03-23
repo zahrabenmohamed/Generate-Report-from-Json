@@ -28,7 +28,7 @@
             <rightPen lineWidth="0.5" lineColor="#000000"/>
         </box>
     </style>
-    <subDataset name="Releve" uuid="315a7346-270b-41fc-accc-d7cb76fbd3ab">
+    <subDataset name="transactions" uuid="315a7346-270b-41fc-accc-d7cb76fbd3ab">
         <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
         <queryString>
             <![CDATA[]]>
@@ -40,8 +40,8 @@
     <parameter name="client_fname" class="java.lang.String"/>
     <parameter name="client_lname" class="java.lang.String"/>
     <parameter name="agency" class="java.lang.String"/>
-    <parameter name="openingDate" class="java.util.Date"/>
-    <parameter name="Releve" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+    <parameter name="openingDate" class="java.lang.String"/>
+    <parameter name="transactions" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
     <queryString>
         <![CDATA[]]>
     </queryString>
@@ -112,8 +112,8 @@
                     <property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
                 </reportElement>
                 <jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
-                    <datasetRun subDataset="Releve" uuid="49fcedeb-2152-40a5-98b2-e8c34a3182fb">
-                        <dataSourceExpression><![CDATA[$P{Releve}]]></dataSourceExpression>
+                    <datasetRun subDataset="transactions" uuid="49fcedeb-2152-40a5-98b2-e8c34a3182fb">
+                        <dataSourceExpression><![CDATA[$P{transactions}]]></dataSourceExpression>
                     </datasetRun>
                     <jr:column width="40" uuid="53c163cf-9a37-4f3b-9a05-45cf91634ea6">
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
