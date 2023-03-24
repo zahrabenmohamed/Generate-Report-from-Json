@@ -1,59 +1,53 @@
 package com.example.Editique.service;
 
 import com.example.Editique.dto.GenerationRequest;
-import com.example.Editique.dto.TemplateDto;
 import com.example.Editique.entity.Template;
 import com.example.Editique.entity.TemplateParam;
 import com.example.Editique.repository.TemplateParamRepository;
 import com.example.Editique.repository.TemplateRepository;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
 import lombok.SneakyThrows;
 import net.minidev.json.JSONArray;
-import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.FileNotFoundException;
 import java.util.*;
 
 @Service
 public class TemplateService {
 
     private final TemplateRepository templateRepository;
-    private final TemplateParamRepository templateParamRepository;
 
 
     @Autowired
     public TemplateService(TemplateRepository templateRepository, TemplateParamRepository templateParamRepository) {
         this.templateRepository = templateRepository;
-        this.templateParamRepository = templateParamRepository;
     }
 
-   /* public byte[] generateTemplate(TemplateDto templateDto) throws FileNotFoundException, JRException, JsonProcessingException {
-        System.out.println(templateDto);
-        Map<String,String> data=new HashMap<>();
-        ObjectMapper mapper = new ObjectMapper();
-        Object jsonObject = mapper.convertValue(templateDto.getTemplateParam(), Object.class);
-        String jsonString = mapper.writeValueAsString(jsonObject);
-        System.out.println(jsonString);
-        String path=templateDto.getPath();
-        JasperReport jasperReport = JasperCompileManager.compileReport(path);
-        JRBeanCollectionDataSource jrBeanCollectionDataSource = new JRBeanCollectionDataSource(Collections.singleton(jsonString));
-        // Add parameters
-        Map<String, Object> parameters = new HashMap<>();
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
-                jrBeanCollectionDataSource);
-        JasperExportManager.exportReportToPdfFile(jasperPrint, templateDto.getCode()+".pdf");
+    public List<Template> getTemplate(){
+        return templateRepository.findAll(); //return a list
+    }
 
+    public Template getTemplateById(Long id){
+        return templateRepository.findById(id).get();
+    }
 
+    public void deleteTemplate(Long id){
+        templateRepository.deleteById(id);
 
-
-        return new byte[0];
-    }*/
-
+    }
+    public Template updateTemplate(Long id, Template updatedTemplate) {
+        Optional<Template> optionalTemplate = templateRepository.findById(id);
+        if (optionalTemplate.isPresent()) {
+            Template template = optionalTemplate.get();
+            template.setTemplateParam(updatedTemplate.getTemplateParam());
+            template.setDescription(updatedTemplate.getDescription());
+            template.setCode(updatedTemplate.getCode());
+            template.setPath(updatedTemplate.getCode());
+            return templateRepository.save(template);
+        } else {
+            throw new RuntimeException("Template not found with id: " + id);
+        }
+    }
 
     public byte[] generateTemplate(GenerationRequest request) {
         Template template = templateRepository.findByCode(request.getTemplate())
