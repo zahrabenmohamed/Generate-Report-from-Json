@@ -8,8 +8,13 @@ import com.example.Editique.repository.TemplateRepository;
 import com.jayway.jsonpath.JsonPath;
 import lombok.SneakyThrows;
 import net.minidev.json.JSONArray;
+import net.sf.jasperreports.engine.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 @Service
@@ -49,9 +54,13 @@ public class TemplateService {
         }
     }
 
-    public byte[] generateTemplate(GenerationRequest request) {
+    public byte[] generateTemplate(GenerationRequest request) throws FileNotFoundException, JRException {
+        String FolderPath = "C:\\Users\\hp\\Desktop\\Report";
         Template template = templateRepository.findByCode(request.getTemplate())
                 .orElseThrow(() -> new RuntimeException("Template not found"));
+        String path=template.getPath();
+        File file = ResourceUtils.getFile("src/main/resources/"+path);
+        JasperReport jasperReport = JasperCompileManager.compileReport(String.valueOf(file));
         Map<String, Object> params = new HashMap<>();
         Object param = null;
         String flux = null;
@@ -70,10 +79,11 @@ public class TemplateService {
             }
             params.put(p.getName(), param);
         }
-
-        return null;
-
-
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, params, new JREmptyDataSource());
+        byte[] pdfBytes = JasperExportManager.exportReportToPdf(jasperPrint);
+        String outputPath = FolderPath + "\\"+template.getCode()+".pdf";
+        JasperExportManager.exportReportToPdfFile(jasperPrint, outputPath);
+        return pdfBytes;
     }
 
     @SneakyThrows
