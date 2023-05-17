@@ -1,10 +1,12 @@
 package com.example.Editique.controller;
 
 import com.example.Editique.dto.GenerationRequest;
+import com.example.Editique.dto.TemplateDto;
 import com.example.Editique.entity.Template;
 import com.example.Editique.service.TemplateService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,19 @@ public class TemplateController {
     public List<Template> getTemplate(){
         return  templateService.getTemplate();
     }
+
+    /****************this will add template in the database *************************/
+
+   /* @PostMapping(value = "add-template")
+    public ResponseEntity<String> saveTemplate(@RequestBody TemplateDto request) {
+        templateService.saveTemplate(request);
+
+        return ResponseEntity.ok("Template saved successfully.");
+    }*/
+
+    /********************************************************************************/
+
+
 
 
 

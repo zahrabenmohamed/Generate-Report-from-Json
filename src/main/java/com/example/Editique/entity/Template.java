@@ -1,6 +1,8 @@
 package com.example.Editique.entity;
 
 import lombok.Data;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -18,7 +20,8 @@ public class Template{
     private String description;
     private String path;
 
-    @OneToMany
+    @OneToMany(mappedBy = "templateId")
+    @NotFound(action = NotFoundAction.IGNORE)
     private List<TemplateParam> templateParam;
 
 }
