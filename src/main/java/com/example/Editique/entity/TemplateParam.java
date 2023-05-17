@@ -17,9 +17,6 @@ public class TemplateParam {
     private String type;
     private String selector;
 
-    @ManyToOne()
-    @JoinColumn(name = "template_id")
-    private  Template templateId;
     @Enumerated(EnumType.STRING)
     private SelectorType selectorType;
     private String source; //transaction s, customer ( name flux )

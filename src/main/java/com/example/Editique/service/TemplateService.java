@@ -45,14 +45,14 @@ public class TemplateService {
 
 
           /*************************************************************************************/
-      /*    public void saveTemplate(TemplateDto templateDto) {
+          public void saveTemplate(TemplateDto templateDto) {
               Template template = new Template();
-              System.out.println(template);
               template.setCode(templateDto.getCode());
               template.setDescription(templateDto.getCode());
               template.setPath(templateDto.getPath());
+
               List<TemplateParam> templateParams = new ArrayList<>();
-              for(TemplateParamDto paramDto :templateDto.getTemplateParam()){
+              for (TemplateParamDto paramDto : templateDto.getTemplateParam()) {
                   TemplateParam param = new TemplateParam();
                   param.setName(paramDto.getName());
                   param.setDescription(paramDto.getDescription());
@@ -60,19 +60,22 @@ public class TemplateService {
                   param.setSelector(paramDto.getSelector());
                   param.setSelectorType(paramDto.getSelectorType());
                   param.setSource(paramDto.getSource());
-                  param.setTemplateId(template);
+
+                  templateParamRepository.save(param); // Save each TemplateParam entity
+
                   templateParams.add(param);
               }
               template.setTemplateParam(templateParams);
-              System.out.println(templateParams);
-              templateRepository.save(template);
-          }*/
+
+              templateRepository.save(template); // Save the Template entity
+          }
 
 
 
 
 
-          /****************************************************************************************/
+
+    /****************************************************************************************/
 
 
     public Template getTemplateById(Long id){

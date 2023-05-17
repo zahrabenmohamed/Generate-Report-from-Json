@@ -20,8 +20,8 @@ public class Template{
     private String description;
     private String path;
 
-    @OneToMany(mappedBy = "templateId")
-    @NotFound(action = NotFoundAction.IGNORE)
+    @OneToMany()
+    @NotFound()
     private List<TemplateParam> templateParam;
 
 }
