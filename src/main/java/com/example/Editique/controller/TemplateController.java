@@ -24,7 +24,7 @@ public class TemplateController {
         return  templateService.getTemplate();
     }
 
-    /****************this will add template in the database *************************/
+    /**************** this will add template in the database *************************/
 
    @PostMapping(value = "add-template")
     public ResponseEntity<String> saveTemplate(@RequestBody TemplateDto request) {
