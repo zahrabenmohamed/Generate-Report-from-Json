@@ -207,7 +207,7 @@
                 <textElement textAlignment="Center">
                     <font isBold="true"/>
                 </textElement>
-                <text><![CDATA[bank identity statement      |    RIB ]]></text>
+                <text><![CDATA[bank identity statement    |   RIB ]]></text>
             </staticText>
         </band>
     </detail>
