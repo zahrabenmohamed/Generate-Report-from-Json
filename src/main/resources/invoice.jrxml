@@ -336,7 +336,7 @@
                 <textElement textAlignment="Center" verticalAlignment="Middle">
                     <font fontName="Serif" size="9" isItalic="true"/>
                 </textElement>
-                <text><![CDATA[THANKYOU FOR YOUR BUSINESS]]></text>
+                <text><![CDATA[THANK YOU FOR YOUR BUSINESS]]></text>
             </staticText>
         </band>
     </lastPageFooter>
