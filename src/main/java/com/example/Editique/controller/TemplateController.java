@@ -3,10 +3,10 @@ package com.example.Editique.controller;
 import com.example.Editique.dto.GenerationRequest;
 import com.example.Editique.dto.TemplateDto;
 import com.example.Editique.entity.Template;
+import com.example.Editique.repository.TemplateRepository;
 import com.example.Editique.service.TemplateService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +18,9 @@ public class TemplateController {
 
     @Autowired
     private TemplateService templateService;
+
+    @Autowired
+    private TemplateRepository templateRepository;
 
     @GetMapping("/templates")
     public List<Template> getTemplate(){
@@ -35,14 +38,18 @@ public class TemplateController {
 
     /********************************************************************************/
 
-
-
-
-
     @GetMapping(value = "template/{id}")
     public ResponseEntity<?> getTemplateById(@PathVariable Long id){
         return ResponseEntity.ok(templateService.getTemplateById(id));
 
+    }
+
+    @GetMapping("/{code}")
+    public ResponseEntity<Template> getTemplateByCode(@PathVariable String code) {
+        Template template = templateRepository.findByCode(code)
+                .orElseThrow(() -> new RuntimeException("Template not found"));
+
+        return ResponseEntity.ok(template);
     }
 
     @DeleteMapping(value = "/template-delete/{id}")
@@ -56,12 +63,9 @@ public class TemplateController {
         return ResponseEntity.ok(updatedTemplate);
     }
 
-
-
     @PostMapping(value = "/generate-template")
     byte[] generateReport(@RequestBody GenerationRequest request) throws Exception{
             return templateService.generateTemplate(request);
         }
-
     }
 
