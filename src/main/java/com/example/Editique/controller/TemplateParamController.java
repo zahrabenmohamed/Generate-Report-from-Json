@@ -26,8 +26,6 @@ public class TemplateParamController {
         return new ResponseEntity<>(savedTemplateParam, HttpStatus.CREATED);
     }
 
-
-
     @GetMapping("/{id}")
     public ResponseEntity<TemplateParamDto> getTemplateParam(@PathVariable Long id) {
         TemplateParamDto templateParamDto = templateParamService.getTemplateParam(id);

@@ -45,11 +45,12 @@ public class TemplateService {
 
 
           /*************************************************************************************/
-          public void saveTemplate(TemplateDto templateDto) {
+          public void saveTemplate(TemplateDto templateDto ,String fileName) {
+              System.out.println("he enter here , so error is happen here");
               Template template = new Template();
               template.setCode(templateDto.getCode());
               template.setDescription(templateDto.getCode());
-              template.setPath(templateDto.getPath());
+              template.setPath(fileName);
 
               List<TemplateParam> templateParams = new ArrayList<>();
               for (TemplateParamDto paramDto : templateDto.getTemplateParam()) {
@@ -69,9 +70,6 @@ public class TemplateService {
 
               templateRepository.save(template); // Save the Template entity
           }
-
-
-
 
 
 

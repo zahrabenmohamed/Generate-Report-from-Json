@@ -6,10 +6,18 @@ import com.example.Editique.entity.Template;
 import com.example.Editique.repository.TemplateRepository;
 import com.example.Editique.service.TemplateService;
 
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -29,12 +37,29 @@ public class TemplateController {
 
     /**************** this will add template in the database *************************/
 
-   @PostMapping(value = "add-template")
-    public ResponseEntity<String> saveTemplate(@RequestBody TemplateDto request) {
-        templateService.saveTemplate(request);
+    @PostMapping("/addtemplate")
+    public ResponseEntity<?> setTemplate(@RequestParam("file") MultipartFile file, @RequestParam("data") String t) throws Exception {
+        Gson g = new Gson();
+        TemplateDto template = g.fromJson(t, TemplateDto.class);
 
-        return ResponseEntity.ok("Template saved successfully.");
+        // Set the path value as the name of the uploaded file
+        String fileName = file.getOriginalFilename();
+        template.setPath(fileName);
+
+        templateService.saveTemplate(template, fileName); // Pass the file name to the service method
+
+        try {
+            //todo modify this to not be realtivePath
+            String relativePath = "C:/Users/hp/Desktop/Project/Generate-Report-from-Json/src/main/resources/" + fileName;
+            System.out.println(relativePath);
+            file.transferTo(new File(relativePath));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
+        return ResponseEntity.ok("File uploaded successfully.");
     }
+
 
     /********************************************************************************/
 
